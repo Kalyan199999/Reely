@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const {fileInfo,myComment} = require('./imageInfo')
 
-
 const postSchema = new mongoose.Schema({
 
   user_id: {
@@ -22,14 +21,14 @@ const postSchema = new mongoose.Schema({
     required: true
   },
 
-  likes: [{
+  like: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
 
-  comments: [ myComment ],
+  comment: [ myComment ],
 
-  shares: {
+  share: {
     type: Number,
     default: 0
   }
