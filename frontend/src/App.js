@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 // Custom packages
 import NavBar from './components/NavBar'
+import Login from './pages/Login'
 
 function App() {
 
@@ -26,6 +27,10 @@ function App() {
           <Route path="/create" element={<h1>create</h1>}></Route>
 
           <Route path="/profile" element={<h1>profile</h1>}></Route>
+
+          <Route path="/login" element={<Login />}></Route>
+
+          <Route path="/register" element={<h1>Register</h1>}></Route>
 
           <Route path="/*" element={<h1>Page Not Found!</h1>}></Route>
 

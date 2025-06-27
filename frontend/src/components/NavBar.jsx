@@ -14,8 +14,6 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { user , logout , isLogedIn } = useAuth()
-
-  console.log(isLogedIn);
   
 
   const handleSidebarToggle = () => {
@@ -115,7 +113,7 @@ const Sidebar = () => {
                       className="flex items-center gap-3 text-xl font-bold text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded p-2"
                     >
                       {/* <CgProfile /> */}
-                      <img src={user.image} alt={user.name}  className="rounded-full border-2 h-8 w-8"/>
+                      <img src={user.image} alt={user.name}  className="rounded-lg border-2 h-8 w-8"/>
 
                       Profile
                     </Link>
