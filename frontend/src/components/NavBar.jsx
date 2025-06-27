@@ -140,9 +140,12 @@ const Sidebar = () => {
                     <Link
                       to="/"
                       className="flex items-center gap-3 text-xl font-bold text-red-600 hover:text-white hover:bg-red-700 rounded p-2"
+
+                      onClick={()=>logout()}
                     >
-                      <button onClick={()=>logout()}
-                      >Logout</button>
+                      {/* <button> */}
+                        Logout
+                      {/* </button> */}
 
                     </Link>
                </li> 
