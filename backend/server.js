@@ -6,6 +6,7 @@ require('dotenv').config();
 // custom packages of connection and and routes
 const connect = require('./config/connect')
 const userRouter = require('./route/userRoute')
+const postRouter = require('./route/postRoute')
 
 const app = express();
 app.use(cors());
@@ -14,7 +15,9 @@ app.use(express.json());
 // app.use(express.static (__dirname + '/images'))
 
 // add the user route
-app.use('/api/user' , userRouter)
+app.use('/api/user' , userRouter);
+
+app.use('/api/post' , postRouter);
 
 const PORT = process.env.PORT || 5050;
 
