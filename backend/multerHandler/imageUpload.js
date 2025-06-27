@@ -35,19 +35,45 @@ const MAX_POST_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
 
 // Storage for profile pictures
 const profileStorage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'images/profile'),
+  destination: (req, file, cb) => {
+    try {
+      cb(null, 'images/profile')
+    } catch (error) {
+      console.log("Path not found!");
+    }
+  },
   filename: (req, file, cb) => {
-    const myfilename = Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname);
-    cb(null, myfilename);
+    try {
+      const myfilename = Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname);
+      cb(null, myfilename);
+    } 
+    catch (error) {
+      console.log("Error in file name generation");
+      
+    }
   },
 });
 
 // Storage for post images/videos
 const postStorage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'images/posts'),
+  destination: (req, file, cb) => {
+    try {
+      cb(null, 'images/posts')
+    } 
+    catch (error) {
+      console.log("Invalid path!");
+      
+    }
+  },
   filename: (req, file, cb) => {
-    const myfilename = Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname);
-    cb(null, myfilename);
+    try {
+      const myfilename = Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname);
+      cb(null, myfilename);
+    } 
+    catch (error) {
+      console.log("Error in file name generation");
+      
+    }
   },
 });
 

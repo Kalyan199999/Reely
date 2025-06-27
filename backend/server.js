@@ -1,8 +1,9 @@
+// import the require packages
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-// custom packages
+// custom packages of connection and and routes
 const connect = require('./config/connect')
 const userRouter = require('./route/userRoute')
 
@@ -12,10 +13,12 @@ app.use(express.json());
 
 // app.use(express.static (__dirname + '/images'))
 
+// add the user route
 app.use('/api/user' , userRouter)
 
 const PORT = process.env.PORT || 5050;
 
+// Start the server
 app.listen(PORT, () => {
 
     try 
