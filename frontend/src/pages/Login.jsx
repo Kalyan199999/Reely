@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 import { useAuth } from "../config/AuthContext";
-import useApiPost from '../customHooks/useApiPost'
+import useApi from '../customHooks/useApiPost'
 
 const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -14,7 +14,8 @@ const Login = () => {
 
   const { login } = useAuth();
 
-  const { trigger } = useApiPost()
+  const { triggerPost } = useApi()
+  
 
   const [user, setUser] = useState({
 
@@ -31,6 +32,7 @@ const Login = () => {
   const handleChange = (e) => {
 
     const { name, value } = e.target;
+
     setUser({ ...user, [name]: value });
 
     // Clear error on input
@@ -64,7 +66,7 @@ const Login = () => {
 
     const url = "http://localhost:5050/api/user/login";
 
-    const res = await trigger(url,user)
+    const res = await triggerPost(url,user)
     
     login( res );
 
@@ -118,13 +120,25 @@ const Login = () => {
           )}
         </div>
 
+        <div className="text-center text-sm text-gray-600 mt-4">
+            Not a user?{" "}
+          <span
+            className="text-blue-600 hover:underline cursor-pointer"
+            onClick={() => navigate("/register")}
+          >
+            Register
+          </span>
+        </div>
+
         <button
           type="submit"
           className="w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 transition"
         >
           Login
         </button>
+
       </form>
+      
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 
-const useApiPost = () => {
+const useApi = () => {
 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const trigger = async (url, payload) => {
+  const triggerPost = async (url, payload) => {
 
     setLoading(true);
 
@@ -15,6 +15,7 @@ const useApiPost = () => {
 
     try {
       const res = await axios.post(url, payload);
+
       setData(res.data);
       
       return res.data; 
@@ -30,7 +31,7 @@ const useApiPost = () => {
     }
   };
 
-  return { trigger, data, loading, error };
+  return { triggerPost, data, loading, error };
 };
 
-export default useApiPost;
+export default useApi;

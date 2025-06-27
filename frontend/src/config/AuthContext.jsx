@@ -9,10 +9,11 @@ export const AuthProvider = ({ children }) => {
     useEffect(()=>{
 
         const checkUser = localStorage.getItem('user');
+        
 
         if(checkUser)
         {
-            setUser( JSON.parse(checkUser) )
+            setUser( JSON.parse(checkUser).data )
         }
 
     } , [] )

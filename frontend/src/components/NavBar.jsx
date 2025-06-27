@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { FaHome, FaSearch } from "react-icons/fa";
 import { BiCompass } from "react-icons/bi";
 import { FiPlusSquare } from "react-icons/fi";
-import { CgProfile } from "react-icons/cg";
+// import { CgProfile } from "react-icons/cg";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { FiLogIn, FiUserPlus } from "react-icons/fi";
+import { FiLogIn } from "react-icons/fi";
 
 import { useAuth } from '../config/AuthContext'
 
@@ -14,6 +14,9 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { user , logout , isLogedIn } = useAuth()
+  
+  console.log(user);
+  
   
 
   const handleSidebarToggle = () => {
@@ -112,13 +115,16 @@ const Sidebar = () => {
                       onClick={closeSidebar}
                       className="flex items-center gap-3 text-xl font-bold text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded p-2"
                     >
-                      {/* <CgProfile /> */}
-                      <img src={user.image} alt={user.name}  className="rounded-lg border-2 h-8 w-8"/>
+          
+                      {
+                        user.profile_photo ? 
+                        <img src={user.profile_photo} alt={user.name}  className="rounded-lg border-2 h-8 w-8"/> :
+                        <div className="rounded-full w-8 h-8 border-2 text-pink-600 flex items-center justify-center text-xl">{user.username[0]}</div>
+                      }
 
                       Profile
                     </Link>
                </li> :
-
                <li>
                     <Link to='/login'
                     className="flex items-center gap-3 text-xl font-bold text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded p-2"
