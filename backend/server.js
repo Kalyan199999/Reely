@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Make the images folder public 
+// Make the images folder public to access from anywhere
 app.use('/images', express.static(__dirname + '/images'));
 
 
