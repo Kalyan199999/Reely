@@ -117,7 +117,10 @@ const Sidebar = () => {
           
                       {
                         user?.data.profile_photo ? 
-                        <img src={user.data.profile_photo} alt={user.data.name}  className="rounded-lg border-2 h-8 w-8"/> :
+                        <img 
+                        src={`http://localhost:5050/${user.data.profile_photo?.destination}/${user.data.profile_photo?.filename}`}
+                        alt={user.data.name}  
+                        className="rounded-lg border-2 h-8 w-8"/> :
                         <div className="rounded-full w-8 h-8 border-2 text-pink-600 flex items-center justify-center text-xl">{user.data.username[0]}</div>
                       }
 

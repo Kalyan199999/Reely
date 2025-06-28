@@ -74,21 +74,15 @@ const ProfileUpdate = () => {
     // }
 
     const url = `http://localhost:5050/api/user/${user.data._id}`;
-    // const res = await triggerUpdateUser( url , formData , user.token );
-    console.log(url);
-    console.log(userDetails._id);
+    const res = await triggerUpdateUser( url , formData , user.token );
+
     
-    console.log(user.token);
-    
-    
-    
-    // if(res)
-    // {
-    //   console.log("User updated successfully");
-    //   login(res)
-    //   navigate('/')
-      
-    // }
+    if(res)
+    {
+      console.log("User updated successfully");
+      login(res)
+      navigate('/')
+    }
     
   };
 
@@ -109,15 +103,33 @@ const ProfileUpdate = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data">
 
+          {
+            selectedImage && console.log(selectedImage)
+            
+          }
+
             {/* Image Preview */}
+
             <div className="text-center">
-              {preview ? (            
-                <img
-                  src={preview}
-                  alt="Profile Preview"
-                  className="h-24 w-24 rounded-full mx-auto object-cover border"
-                />
-              ) : (
+              {
+              preview ? (    
+                selectedImage ?    
+                    (<img
+                        src={`${preview}`}
+                        alt="Profile Preview"
+                        className="h-24 w-24 rounded-full mx-auto object-cover border"
+                    />)  
+                :
+                    (
+                      <img
+                        src={`http://localhost:5050/${preview.destination}/${preview.filename}`}
+                        alt="Profile Preview"
+                        className="h-24 w-24 rounded-full mx-auto object-cover border"
+                />   
+                    ) 
+              ) 
+              : 
+              (
                 <div className="h-24 w-24 rounded-full mx-auto bg-gray-300" />
               )}
             </div>

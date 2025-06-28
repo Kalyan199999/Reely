@@ -20,7 +20,7 @@ const Profile = () => {
           <div className="h-32 w-32 bg-gray-300 rounded-full overflow-hidden border-2 border-pink-600">
             {user?.data.profile_photo ? (
               <img
-                src={user.data.profile_photo}
+                src={`http://localhost:5050/${user.data.profile_photo?.destination}/${user.data.profile_photo?.filename}`}
                 alt={user.data.username}
                 className="object-cover h-full w-full"
               />
