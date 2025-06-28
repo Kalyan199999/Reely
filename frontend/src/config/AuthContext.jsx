@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
         if(checkUser)
         {
-            setUser( JSON.parse(checkUser).data )
+            setUser( JSON.parse(checkUser) )
         }
 
     } , [] )

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { Link } from "react-router-dom";
 import { FaHome, FaSearch } from "react-icons/fa";
 import { BiCompass } from "react-icons/bi";
@@ -6,6 +7,8 @@ import { FiPlusSquare } from "react-icons/fi";
 // import { CgProfile } from "react-icons/cg";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { FiLogIn } from "react-icons/fi";
+
+
 
 import { useAuth } from '../config/AuthContext'
 
@@ -15,10 +18,6 @@ const Sidebar = () => {
 
   const { user , logout , isLogedIn } = useAuth()
   
-  console.log(user);
-  
-  
-
   const handleSidebarToggle = () => {
     setIsOpen(!isOpen);
   };
@@ -117,9 +116,9 @@ const Sidebar = () => {
                     >
           
                       {
-                        user.profile_photo ? 
-                        <img src={user.profile_photo} alt={user.name}  className="rounded-lg border-2 h-8 w-8"/> :
-                        <div className="rounded-full w-8 h-8 border-2 text-pink-600 flex items-center justify-center text-xl">{user.username[0]}</div>
+                        user?.data.profile_photo ? 
+                        <img src={user.data.profile_photo} alt={user.data.name}  className="rounded-lg border-2 h-8 w-8"/> :
+                        <div className="rounded-full w-8 h-8 border-2 text-pink-600 flex items-center justify-center text-xl">{user.data.username[0]}</div>
                       }
 
                       Profile

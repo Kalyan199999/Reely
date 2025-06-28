@@ -17,6 +17,7 @@ const useApi = () => {
       const res = await axios.post(url, payload);
 
       setData(res.data);
+
       
       return res.data; 
     } 
