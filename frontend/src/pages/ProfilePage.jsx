@@ -1,6 +1,8 @@
 // import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import DisplayUserPost from './DisplayuserPost'
+
 import { useAuth } from '../config/AuthContext'
 
 const Profile = () => {
@@ -77,9 +79,13 @@ const Profile = () => {
 
       {/* Section 2 */}
       <div className="bg-white shadow-md rounded-lg p-6">
-        <h2 className="text-xl font-bold mb-4">Profile Details</h2>
+
+        {/* <h2 className="text-xl font-bold mb-4">Profile Details</h2> */}
         {/* Add more details or features here */}
-        <p className="text-gray-600">Coming soon...</p>
+        {/* <p className="text-gray-600">Coming soon...</p> */}
+
+        <DisplayUserPost />
+        
       </div>
     </div>
   );

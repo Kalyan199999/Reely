@@ -11,6 +11,6 @@ postRouter.post('/',verifyUser ,uploadPost.array( 'userpost' , 10 ) , createPost
 
 postRouter.get('/' , getPost )
 
-postRouter.get('/:id' , getPostById )
+postRouter.get('/:id', verifyUser , getPostById )
 
 module.exports = postRouter
