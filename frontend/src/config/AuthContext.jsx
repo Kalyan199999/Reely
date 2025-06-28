@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
     useEffect(()=>{
 
         const checkUser = localStorage.getItem('user');
-        
 
         if(checkUser)
         {

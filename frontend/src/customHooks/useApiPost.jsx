@@ -32,7 +32,36 @@ const useApi = () => {
     }
   };
 
-  return { triggerPost, data, loading, error };
+  const triggerUpdateUser = async (url,payload,token) => {
+
+    setLoading(true);
+
+    setError(null);
+
+    try 
+    {
+      const response = await axios.put(url,payload,{
+        headers: {
+               Authorization: token
+          }
+      });
+      setData(response.data);
+
+      return response.data;
+    } 
+    catch (err) 
+    {
+      setError(err);
+      console.error("API POST Error:", err);
+      return null;
+    } 
+    finally {
+      setLoading(false);
+    }
+
+  }
+
+  return { triggerPost,triggerUpdateUser, data, loading, error };
 };
 
 export default useApi;
