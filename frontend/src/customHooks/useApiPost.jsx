@@ -42,7 +42,7 @@ const useApi = () => {
     {
       const response = await axios.put(url,payload,{
         headers: {
-               Authorization: token
+              authorization: token
           }
       });
       setData(response.data);
