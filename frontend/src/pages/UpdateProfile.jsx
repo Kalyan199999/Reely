@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { toast } from "react-toastify";
+
 import { useAuth } from "../config/AuthContext";
 import useApi from '../customHooks/useApiPost'
 
@@ -80,8 +82,12 @@ const ProfileUpdate = () => {
     if(res)
     {
       console.log("User updated successfully");
+      toast.success('Profile Updated')
       login(res)
       navigate('/')
+    }
+    else{
+      toast.error('profile is not updated!')
     }
     
   };

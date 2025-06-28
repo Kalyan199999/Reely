@@ -1,6 +1,10 @@
 //  Import the require packages
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
+// For toast
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 // Custom packages
 import NavBar from './components/NavBar'
@@ -9,12 +13,25 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Profile from './pages/ProfilePage'
 import ProfileUpdate from './pages/UpdateProfile'
+import PostUpload from './pages/PostUpload'
 
 function App() {
 
   return (
 
     <div className=" m-2 border-2 border-green-500 flex flex-row gap-2 ">
+
+       <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored" // or "light" | "dark"
+      />
 
       <Router >
 
@@ -28,7 +45,7 @@ function App() {
 
           <Route path="/explore" element={<h1>explore</h1>}></Route>
 
-          <Route path="/create" element={<h1>create</h1>}></Route>
+          <Route path="/create" element={<PostUpload />}></Route>
 
           <Route path="/profile" element={<Profile />}></Route>
 

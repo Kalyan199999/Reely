@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {toast} from 'react-toastify'
 
 
 import { useAuth } from "../config/AuthContext";
@@ -68,9 +69,16 @@ const Login = () => {
 
     const res = await triggerPost(url,user)
     
-    login( res );
+    if(res)
+    {
+      toast.success("Login successful!");
+      login( res );
 
-    navigate("/");
+      navigate("/");
+    }
+    else{
+      toast.error( "Login failed. Try again.");
+    }
 
   };
 

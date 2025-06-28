@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 
+// Make the images folder public 
 app.use('/images', express.static(__dirname + '/images'));
 
 

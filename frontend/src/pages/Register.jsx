@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { toast } from "react-toastify";
+
 
 import { useAuth } from "../config/AuthContext";
 import useApi from "../customHooks/useApiPost"; 
@@ -84,8 +86,15 @@ const Register = () => {
 
     const res = await triggerPost( "http://localhost:5050/api/user" , user);
 
-    login(res);
-    navigate("/");
+    if(res)
+    {
+      toast.success("Registration successful!");
+      login( res );
+      navigate("/");
+    }
+    else{
+      toast.error( "Registration failed. Try again.");
+    }
     
   }
 
