@@ -22,6 +22,6 @@ userRouter.post('/',uploadProfile.single('user_profile_image'), createUser)
 userRouter.post('/login',login)
 
 // update the user
-userRouter.put('/:id', uploadProfile.single('user_profile_image'), updateUser)
+userRouter.put('/:id',verifyUser, uploadProfile.single('user_profile_image'), updateUser)
 
 module.exports = userRouter
