@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../config/AuthContext";
+import useApi from '../customHooks/useApiPost'
 
 const ProfileUpdate = () => {
 
-  const { user,triggerUpdateUser, isLogedIn, login } = useAuth();
-  
+  const { user, isLogedIn, login } = useAuth();
+
+  const {triggerUpdateUser} = useApi()
+
+  const navigate = useNavigate();
 
   const [userDetails, setUserDetails] = useState({
     username: "",
@@ -60,18 +66,23 @@ const ProfileUpdate = () => {
       formData.append("profile_photo", selectedImage);
     }
 
-    console.log("FormData contents:");
+    // console.log("FormData contents:");
 
-    for (let pair of formData.entries()) 
-    {
-      console.log(`${pair[0]}:`, pair[1]);
-    }
+    // for (let pair of formData.entries()) 
+    // {
+    //   console.log(`${pair[0]}:`, pair[1]);
+    // }
 
     const url = `http://localhost:5050/api/user/${user.data._id}`;
-    // const res = await triggerUpdateUser( url , formData , user.token );
-    console.log(url);
+    const res = await triggerUpdateUser( url , formData , user.token );
     
-
+    if(res)
+    {
+      console.log("User updated successfully");
+      login(res)
+      navigate('/')
+      
+    }
     
   };
 
