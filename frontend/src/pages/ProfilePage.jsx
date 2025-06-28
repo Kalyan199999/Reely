@@ -9,9 +9,6 @@ const Profile = () => {
 
   const { user } = useAuth();
 
-  console.log(user);
-  
-
   return (
     <div className="min-h-screen w-full bg-gray-100 text-gray-800 p-4">
       
