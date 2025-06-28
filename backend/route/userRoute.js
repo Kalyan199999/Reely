@@ -16,12 +16,12 @@ userRouter.get('/', getAllUser )
 userRouter.get('/:id' , verifyUser, getUserByID)
 
 // create the new user
-userRouter.post('/',uploadProfile.single('user_profile_image'), createUser)
+userRouter.post('/',uploadProfile.single('profile_photo'), createUser)
 
 // login 
 userRouter.post('/login',login)
 
 // update the user
-userRouter.put('/:id',verifyUser, uploadProfile.single('user_profile_image'), updateUser)
+userRouter.put('/:id',verifyUser, uploadProfile.single('profile_photo'), updateUser)
 
 module.exports = userRouter
