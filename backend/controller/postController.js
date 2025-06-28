@@ -48,15 +48,15 @@ const getPost = async (req, res) => {
     }
 }
 
-// get post
+// get post By user Id
 const getPostById = async (req, res) => {
 
     try {
         const { id } = req.params;
-        console.log(id);
         
-        
-        const post = await Post.findById(id).populate('user_id');
+        // What parameter are passed in the populate only that parameter will be populated
+        // .populate("user_id", "username name");
+        const post = await Post.find({user_id:id})
 
         if(!post) {
             return res.status(404).json({
@@ -66,14 +66,14 @@ const getPostById = async (req, res) => {
         }
 
         return res.status(200).json({
-            message:"post fetched successfully",
+            message:"Get By Id fetched successfully",
             ok:true,
             data:post
         })
     } 
     catch (error) {
         return res.status(500).json({
-            message:"post fetching failed!",
+            message:"Get By Id fetching failed!",
             ok:false,
             error:error.message
         })
