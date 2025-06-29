@@ -31,7 +31,6 @@ const createPost = async (req, res) => {
 const getPost = async (req, res) => {
     
     try {
-
         const post = await Post.find().populate('user_id' , "username profile_photo");
 
         return res.status(200).json({
