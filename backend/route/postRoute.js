@@ -10,7 +10,7 @@ const postRouter = express.Router();
 postRouter.post('/',verifyUser ,uploadPost.array( 'userpost' , 10 ) , createPost )
 
 // Get all the available posts
-postRouter.get('/all-posts'  , getPost )
+postRouter.get('/all-posts' ,verifyUser , getPost )
 
 // Get all the posts of the user
 postRouter.get('/:id', verifyUser , getPostById )
