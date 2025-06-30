@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Custom packages
 import NavBar from './components/NavBar'
 
+import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Profile from './pages/ProfilePage'
@@ -45,7 +46,7 @@ function App() {
         
          <Routes>
 
-          <Route path="/" element={<h1>Home</h1>}></Route>
+          <Route path="/" element={<Home />}></Route>
 
           <Route path="/search" element={<h1>search</h1>}></Route>
 
