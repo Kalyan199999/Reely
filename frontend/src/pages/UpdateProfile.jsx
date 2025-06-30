@@ -78,6 +78,8 @@ const ProfileUpdate = () => {
     const url = `http://localhost:5050/api/user/${user.data._id}`;
     const res = await triggerUpdateUser( url , formData , user.token );
 
+    console.log(res);
+    
     
     if(res)
     {

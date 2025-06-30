@@ -23,55 +23,42 @@ import ProfileUpdate from './pages/UpdateProfile'
 import PostUpload from './pages/PostUpload'
 
 function App() {
-
   return (
-
-    <div className=" m-2 border-2 border-green-500 flex flex-row gap-2 ">
-
-       <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored" // or "light" | "dark"
-      />
-
-      <Router >
-
+    <Router>
+      <div className="flex">
+        {/* Sidebar */}
         <NavBar />
-        
-         <Routes>
 
-          <Route path="/" element={<Home />}></Route>
+        {/* Main content with left margin equal to sidebar width */}
+        <div className="ml-64 w-full p-4">
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
 
-          <Route path="/search" element={<h1>search</h1>}></Route>
-
-          <Route path="/explore" element={<h1>explore</h1>}></Route>
-
-          <Route path="/create" element={<PostUpload />}></Route>
-
-          <Route path="/profile" element={<Profile />}></Route>
-
-          <Route path="/login" element={<Login />}></Route>
-
-          <Route path="/register" element={<Register />}></Route>
-          
-          <Route path="/update-profile" element={<ProfileUpdate /> }></Route>
-
-          <Route path="/*" element={<h1>Page Not Found!</h1>}></Route>
-
-         </Routes>
-      
-      </Router>
-
-    </div>
-
-  )
-
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<h1>search</h1>} />
+            <Route path="/explore" element={<h1>explore</h1>} />
+            <Route path="/create" element={<PostUpload />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/update-profile" element={<ProfileUpdate />} />
+            <Route path="/*" element={<h1>Page Not Found!</h1>} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
+  );
 }
+
 
 export default App;

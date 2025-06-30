@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { useAuth } from '../config/AuthContext';
 import useApi from '../customHooks/useApiPost';
@@ -16,13 +16,14 @@ const Home = () => {
   const { triggerGetAllPosts } = useApi();
 
   const [posts, setPosts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMedia, setSelectedMedia] = useState(null);
 
   const fetchData = async () => {
     try {
       const url = 'http://localhost:5050/api/post/all-posts';
       const token = user.token;
       const res = await triggerGetAllPosts(url, token);
-
       setPosts(res.data);
     } catch (error) {
       console.log('Error: ' + error);
@@ -35,13 +36,40 @@ const Home = () => {
     }
   }, [isLogedIn]);
 
-  return (
-    <div className="w-full min-h-screen bg-gray-100 py-8 px-2 sm:px-4 flex flex-col items-center">
-      {/* <h1 className="text-3xl font-bold mb-8">Instagram-style Posts</h1> */}
+  // Observe video visibility and control play/pause
+  const videoRefs = useRef([]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    videoRefs.current.forEach((video) => {
+      if (video) observer.observe(video);
+    });
+
+    return () => {
+      videoRefs.current.forEach((video) => {
+        if (video) observer.unobserve(video);
+      });
+    };
+  }, [posts]);
+
+  return (
+    <div className="w-full min-h-screen bg-pink-600 py-8 px-2 sm:px-4 flex flex-col items-center">
       <div className="w-full max-w-md flex flex-col gap-8">
         {posts.length === 0 ? (
-          <h2 className="text-lg text-center">No Posts Found</h2>
+          <h2 className="text-lg text-center">Loading Posts</h2>
         ) : (
           posts.map((post) => (
             <div
@@ -83,11 +111,17 @@ const Home = () => {
                         <img
                           src={src}
                           alt="Post media"
-                          className="h-full w-full object-center"
+                          className="h-full w-full object-cover cursor-zoom-in"
+                          onClick={() => {
+                            setSelectedMedia(src);
+                            setIsModalOpen(true);
+                          }}
                         />
                       ) : (
                         <video
+                          ref={(el) => (videoRefs.current.push(el))}
                           controls
+                          muted
                           src={src}
                           className="h-full w-full object-cover"
                         />
@@ -97,7 +131,7 @@ const Home = () => {
                 })}
               </Swiper>
 
-              {/* Buttons */}
+              {/* Action Buttons */}
               <div className="flex items-center gap-6 text-xl px-4 py-2">
                 <FaHeart className="cursor-pointer hover:text-red-500 transition" />
                 <FaComment className="cursor-pointer hover:text-blue-500 transition" />
@@ -115,6 +149,21 @@ const Home = () => {
           ))
         )}
       </div>
+
+      {/* Zoom Modal */}
+      {isModalOpen && selectedMedia && (
+        <div
+          className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <img
+            src={selectedMedia}
+            alt="Zoomed"
+            className="max-w-full max-h-full object-contain p-4"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 };
