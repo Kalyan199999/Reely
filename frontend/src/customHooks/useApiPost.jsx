@@ -146,7 +146,29 @@ const useApi = () => {
     }
   }
 
-  return { triggerPost,triggerUpdateUser,triggerUploadPost, triggerGetPostById,triggerGetAllPosts , data, loading, error };
+  const triggerUserById = async ( url )=>{
+    setLoading(true);
+
+    setError(null);
+
+    try 
+    {
+      const response = await axios.get(url);
+      setData(response.data);
+      return response.data;
+    } 
+    catch (err) 
+    {
+      setError(err);
+      console.error("API Get Error:", err);
+      return null;
+    } 
+    finally {
+      setLoading(false);
+    }
+  }
+
+  return { triggerPost,triggerUpdateUser,triggerUploadPost, triggerGetPostById,triggerGetAllPosts,triggerUserById , data, loading, error };
 };
 
 export default useApi;

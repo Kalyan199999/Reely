@@ -15,7 +15,7 @@ userRouter.get('/', getAllUser )
 
 userRouter.get('/search/:username',searchUserByUsername);
 
-userRouter.get('/:id' , verifyUser, getUserByID)
+userRouter.get('/:id' , getUserByID)
 
 
 // create the new user

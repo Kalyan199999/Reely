@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 import { useAuth } from '../config/AuthContext';
 import useApi from '../customHooks/useApiPost';
 
-// Optional: Register modules manually (Swiper v9+ only)
+
 import SwiperCore from 'swiper';
 SwiperCore.use([Navigation, Pagination]);
 

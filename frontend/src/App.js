@@ -22,6 +22,7 @@ import Profile from './pages/ProfilePage'
 import ProfileUpdate from './pages/UpdateProfile'
 import PostUpload from './pages/PostUpload'
 import Search from './pages/Search'
+import SearchedProfile from './pages/SearchedProfile'
 
 function App() {
   return (
@@ -53,6 +54,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/update-profile" element={<ProfileUpdate />} />
+
+            <Route path="/searched-profile/:id" element={<SearchedProfile />} />
+
             <Route path="/*" element={<h1>Page Not Found!</h1>} />
           </Routes>
         </div>

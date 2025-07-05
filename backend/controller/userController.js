@@ -167,7 +167,7 @@ const searchUserByUsername = async (req, res) => {
 
         const allusers = await User.find({ });
 
-        const user = allusers.filter((user) => user.username.includes(username));
+        const user = allusers.filter((user) => user.username.toLowerCase().includes(username.toLowerCase()));
 
         return res.status(200).json({ ok: true, message: "User found successfully",data:user });
     } 

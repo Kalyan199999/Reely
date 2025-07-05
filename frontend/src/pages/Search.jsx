@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Search() {
   const [searchText, setSearchText] = useState('');
   const [users, setUsers] = useState([]);
+
+  const navigate = useNavigate();
 
   const handleChange = async (e) => {
     const value = e.target.value;
@@ -43,6 +46,7 @@ function Search() {
             <div
               key={user._id}
               className="flex items-center gap-4 p-3 border rounded-md shadow-sm hover:bg-gray-50 cursor-pointer transition"
+              onClick={()=>navigate(`/searched-profile/${user._id}`)}
             >
 
               {
