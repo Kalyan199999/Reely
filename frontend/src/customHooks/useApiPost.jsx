@@ -120,7 +120,7 @@ const useApi = () => {
 
   }
 
-  const triggerGetAllPosts = async (url,token)=>{
+  const triggerGetAllPosts = async (url)=>{
 
     setLoading(true);
 
@@ -129,9 +129,7 @@ const useApi = () => {
     try 
     {
       const response = await axios.get(url,{
-        headers: {
-              authorization: token
-          }
+       
       });
       setData(response.data);
 

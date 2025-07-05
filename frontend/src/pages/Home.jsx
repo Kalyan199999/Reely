@@ -22,18 +22,19 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const url = 'http://localhost:5050/api/post/all-posts';
-      const token = user.token;
-      const res = await triggerGetAllPosts(url, token);
+     
+      const res = await triggerGetAllPosts(url);
       setPosts(res.data);
+      
     } catch (error) {
       console.log('Error: ' + error);
     }
   };
 
   useEffect(() => {
-    if (isLogedIn) {
+   
       fetchData();
-    }
+    
   }, [isLogedIn]);
 
   // Observe video visibility and control play/pause
@@ -69,7 +70,7 @@ const Home = () => {
     <div className="w-full min-h-screen bg-pink-600 py-8 px-2 sm:px-4 flex flex-col items-center">
       <div className="w-full max-w-md flex flex-col gap-8">
         {posts.length === 0 ? (
-          <h2 className="text-lg text-center">Loading Posts</h2>
+          <h2 className="text-lg text-center text-white ">Loading Posts</h2>
         ) : (
           posts.map((post) => (
             <div
@@ -99,7 +100,7 @@ const Home = () => {
                 slidesPerView={1}
                 navigation
                 pagination={{ clickable: true }}
-                className="w-full h-80 bg-black"
+                className="w-full h-[75vh] bg-black"
               >
                 {post.post.map((media, index) => {
                   const isImage = media.mimetype.startsWith('image');
@@ -111,7 +112,7 @@ const Home = () => {
                         <img
                           src={src}
                           alt="Post media"
-                          className="h-full w-full object-cover cursor-zoom-in"
+                          className="h-full w-full object-fill cursor-zoom-in"
                           onClick={() => {
                             setSelectedMedia(src);
                             setIsModalOpen(true);

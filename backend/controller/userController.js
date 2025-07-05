@@ -159,12 +159,31 @@ const updateUser = async (req, res) => {
     
 }
 
+const searchUserByUsername = async (req, res) => {
+
+    
+    try {
+        const username = req.params.username;
+
+        const allusers = await User.find({ });
+
+        const user = allusers.filter((user) => user.username.includes(username));
+
+        return res.status(200).json({ ok: true, message: "User found successfully",data:user });
+    } 
+    catch (error) {
+        return res.status(500).json({ ok: false, message: error.message,data:[] })
+    }
+    
+}
+
 module.exports = 
 {
     getAllUser,
     getUserByID,
     createUser,
     login,
-    updateUser
+    updateUser,
+    searchUserByUsername
     
 }

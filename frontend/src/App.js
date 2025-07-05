@@ -21,6 +21,7 @@ import Register from './pages/Register'
 import Profile from './pages/ProfilePage'
 import ProfileUpdate from './pages/UpdateProfile'
 import PostUpload from './pages/PostUpload'
+import Search from './pages/Search'
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/search" element={<h1>search</h1>} />
+            <Route path="/search" element={<Search />} />
             <Route path="/explore" element={<h1>explore</h1>} />
             <Route path="/create" element={<PostUpload />} />
             <Route path="/profile" element={<Profile />} />
